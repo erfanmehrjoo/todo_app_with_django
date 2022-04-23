@@ -1,0 +1,39 @@
+{% extends "main.html" %}
+{% block body %}
+<br/><br/>
+<div class="row justify-content-center">
+    <div class="col-auto">
+<table class="table table-responsive">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Detail</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Dlete</th>
+    </tr>
+    </thead>
+    {% for task in tasks %}
+    <tbody>
+    <tr>
+
+        
+        <td>{{task.title}}</td>
+        <td scope="col"><a href="{% url 'task' task.id %}">Detail</a></td>
+        <td scope="col"><a href="{% url 'task-update' task.id %}">Edit</a></td>
+        <td scope="col"><a href="{% url 'task-delete' task.id %}">Delete</a></td>
+        
+        
+    </tr>
+    </tbody>
+    {% endfor %}
+</table>
+</div>
+</div>
+<br/>
+<a href="{% url 'task-create' %}">create new object</a>
+<form method="GET">
+    <input type="text" name="search-area" value="{{ search_input }}">
+    <input type="submit" value="search">
+</form>
+
+{% endblock %}
